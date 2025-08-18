@@ -20,16 +20,23 @@ jobs:
         uses: mukunku/tag-exists-action@v1.1.0
         id: checkexist
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.PUSH_PAT }}
+          # Use PAT instead of GITHUB_TOKEN to enable triggering other workflows
+          # GITHUB_TOKEN cannot trigger workflows on tag push events for security reasons
+          GITHUB_TOKEN: ${{ secrets.PUSH_PAT }}
         with: 
           tag: ${{ steps.newversion.outputs.NEW_VERSION }}
       - uses: actions/checkout@v3
+        with:
+          # Use PAT to allow tag creation that can trigger build-and-push workflow
+          # Default GITHUB_TOKEN prevents triggering workflows from automated tag pushes
+          token: ${{ secrets.PUSH_PAT }}
       - name: Add tag when new version released
         if: ${{ steps.checkexist.outputs.exists != 'true' }}
         uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ steps.newversion.outputs.NEW_VERSION }}
+          # Use PAT to ensure the created tag can trigger the build-and-push workflow
+          github_token: ${{ secrets.PUSH_PAT }}
       - name: Push tag to remote
         if: ${{ steps.checkexist.outputs.exists != 'true' }}
         run: |
