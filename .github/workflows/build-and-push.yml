@@ -1,4 +1,4 @@
-name: Build and putsh image when new tag
+name: Build and push image when new tag
 
 on:
   push:
