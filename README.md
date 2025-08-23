@@ -1,0 +1,1 @@
+[![Build and push image when new tag](https://github.com/chenwei791129/docker-kubectl/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/chenwei791129/docker-kubectl/actions/workflows/build-and-push.yml)
