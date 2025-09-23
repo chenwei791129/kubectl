@@ -14,4 +14,4 @@ jobs:
     with:
       dockerhub-repository: awei/kubectl
       build-args: |
-        KUBE_VERSION=${{ github.ref_name }}
+        KUBECTL_VERSION=${{ github.ref_name }}
