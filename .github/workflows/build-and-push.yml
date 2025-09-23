@@ -3,6 +3,12 @@ name: Build and push image when new tag
 on:
   push:
     tags: ['*']
+  workflow_dispatch:
+    inputs:
+      kubectl_version:
+        description: 'kubectl version to build'
+        required: true
+        type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -14,7 +20,7 @@ jobs:
     with:
       dockerhub-repository: awei/kubectl
       build-args: |
-        KUBECTL_VERSION=${{ github.ref_name }}
+        KUBECTL_VERSION=${{ inputs.kubectl_version || github.ref_name }}
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
