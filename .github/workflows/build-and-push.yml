@@ -13,3 +13,5 @@ jobs:
     uses: chenwei791129/.github/.github/workflows/build-and-push-image.yml@main
     with:
       dockerhub-repository: awei/kubectl
+      build-args: |
+        KUBE_VERSION=${{ github.ref_name }}
