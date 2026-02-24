@@ -9,4 +9,5 @@ RUN echo "Kubectl version is: ${KUBECTL_VERSION}" && \
     curl -sL https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.tar.gz | tar -xz kubernetes/client/bin/kubectl && \
     mv ./kubernetes/client/bin/kubectl /usr/bin/ && \
     rm -rf ./kubernetes && \
-    apk del .build-deps
+    apk del .build-deps && \
+    apk add --no-cache gettext
