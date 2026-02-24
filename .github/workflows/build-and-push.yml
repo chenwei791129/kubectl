@@ -19,6 +19,7 @@ jobs:
     uses: chenwei791129/.github/.github/workflows/build-and-push-image.yml@main
     with:
       dockerhub-repository: awei/kubectl
+      additional-tags: ${{ inputs.kubectl_version && format('type=semver,pattern={{{{version}}}},value={0}\ntype=semver,pattern={{{{major}}}}.{{{{minor}}}},value={0}', inputs.kubectl_version) || '' }}
       build-args: |
         KUBECTL_VERSION=${{ inputs.kubectl_version || github.ref_name }}
     secrets:
