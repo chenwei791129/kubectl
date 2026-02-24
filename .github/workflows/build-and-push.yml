@@ -20,6 +20,7 @@ jobs:
     with:
       dockerhub-repository: awei/kubectl
       enable-branch-tag: ${{ !inputs.kubectl_version }}
+      enable-latest-tag: ${{ !inputs.kubectl_version }}
       additional-tags: |
         ${{ inputs.kubectl_version && format('type=semver,pattern={{{{version}}}},value={0}', inputs.kubectl_version) || '' }}
         ${{ inputs.kubectl_version && format('type=semver,pattern={{{{major}}}}.{{{{minor}}}},value={0}', inputs.kubectl_version) || '' }}
