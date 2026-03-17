@@ -18,7 +18,6 @@ jobs:
       packages: write
     uses: chenwei791129/.github/.github/workflows/build-and-push-image.yml@main
     with:
-      dockerhub-repository: awei/kubectl
       enable-branch-tag: ${{ !inputs.kubectl_version }}
       enable-latest-tag: ${{ !inputs.kubectl_version }}
       additional-tags: |
@@ -26,6 +25,3 @@ jobs:
         ${{ inputs.kubectl_version && format('type=semver,pattern={{{{major}}}}.{{{{minor}}}},value={0}', inputs.kubectl_version) || '' }}
       build-args: |
         KUBECTL_VERSION=${{ inputs.kubectl_version || github.ref_name }}
-    secrets:
-      DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
-      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
