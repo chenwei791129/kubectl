@@ -12,6 +12,7 @@ Alpine-based Docker image with Kubernetes CD tools for CI/CD pipelines.
 | **kustomize** | Kubernetes configuration customization (latest) |
 | **helm** | Kubernetes package manager (latest) |
 | **helm-diff** | Helm plugin for diffing releases |
+| **yq** | YAML/JSON/XML processor (mikefarah, latest) |
 | **envsubst** | Environment variable substitution (via gettext) |
 
 ## Usage
